@@ -77,7 +77,7 @@ function createMap(earthquakes) {
     Earthquakes: earthquakes
   };
 
-  // Create our map, giving it the streetmap and earthquakes layers to display on load.
+  // Create our map, giving it the grayscale and earthquakes layers to display on load.
   var myMap = L.map("map", {
     center: [37.09, -95.71],
     zoom: 5,  // Adjusted zoom level for better view
