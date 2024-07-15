@@ -1,15 +1,15 @@
-// Store our API endpoint as queryUrl.
+// Store the called API endpoint as queryUrl for one week.. (7 days is a week)
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 // Perform a GET request to the query URL
 d3.json(queryUrl).then(function (data) {
   // Console log the data retrieved 
   console.log(data);
-  // Once we get a response, send the data.features object to the createFeatures function.
+  // Once a response is recieved, send the data.features object to the createFeatures function.
   createFeatures(data.features);
 });
 
-// Function to determine marker size
+// Function to determine marker size for mapping
 function markerSize(magnitude) {
   return magnitude * 2000;
 };
@@ -17,16 +17,16 @@ function markerSize(magnitude) {
 // Function to determine marker color by depth
 function chooseColor(depth){
   if (depth < 10) return "#00FF00";
-  else if (depth < 30) return "greenyellow";
-  else if (depth < 50) return "yellow";
-  else if (depth < 70) return "orange";
-  else if (depth < 90) return "orangered";
+  else if (depth < 30) return "violet";
+  else if (depth < 50) return "blue";
+  else if (depth < 70) return "indigo";
+  else if (depth < 90) return "red";
   else return "#FF0000";
 }
 
 function createFeatures(earthquakeData) {
 
-  // Define a function that we want to run once for each feature in the features array.
+  // Define a function that will run once for each feature in the features array.
   // Give each feature a popup that describes the place and time of the earthquake.
   function onEachFeature(feature, layer) {
     layer.bindPopup(`<h3>Location: ${feature.properties.place}</h3><hr><p>Date: ${new Date(feature.properties.time)}</p><p>Magnitude: ${feature.properties.mag}</p><p>Depth: ${feature.geometry.coordinates[2]}</p>`);
@@ -79,7 +79,7 @@ function createMap(earthquakes) {
   });
 
   // Add legend
-  var legend = L.control({position: "bottomright"});
+  var legend = L.control({position: "bottomleft"});
   legend.onAdd = function() {
     var div = L.DomUtil.create("div", "info legend"),
     depth = [-10, 10, 30, 50, 70, 90];
