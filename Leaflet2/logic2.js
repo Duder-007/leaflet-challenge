@@ -1,6 +1,6 @@
-const api_key = "pk.eyJ1Ijoicm9zYXpodSIsImEiOiJja2ZvbTFvbzEyM2c1MnVwbTFjdmVycXk5In0.71jVP2vD8pBWO2bsKtI48Q";
 
-var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+// Store our API endpoint as queryUrl and tectonicplatesUrl
+var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 var tectonicplatesUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 
 // Perform a GET request to the query URL
@@ -45,7 +45,7 @@ function createFeatures(earthquakeData) {
         color: "black",
         weight: 0.5
       }
-      return L.circle(latlng, markers);
+      return L.circle(latlng,markers);
     }
   });
 
@@ -58,51 +58,54 @@ function createMap(earthquakes) {
   // Create tile layers
   var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token={access_token}', {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    style: 'mapbox/satellite-v9',
+    style:    'mapbox/satellite-v9',
     access_token: api_key
   });
   
   var grayscale = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token={access_token}', {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    style: 'mapbox/light-v11',
+    style:    'mapbox/light-v11',
     access_token: api_key
   });
 
   var outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token={access_token}', {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    style: 'mapbox/outdoors-v12',
+    style:    'mapbox/outdoors-v12',
     access_token: api_key
   });
 
   // Create layer for tectonic plates
-  var tectonicPlates = new L.layerGroup();
+  tectonicPlates = new L.layerGroup();
 
-  // Perform a GET request to the tectonicplatesURL
-  d3.json(tectonicplatesUrl).then(function (plates) {
-    // Console log the data retrieved 
-    console.log(plates);
-    L.geoJSON(plates, {
-      color: "red",
-      weight: 2
-    }).addTo(tectonicPlates);
-  });
+    // Perform a GET request to the tectonicplatesURL
+    d3.json(tectonicplatesUrl).then(function (plates) {
 
-  // Create a baseMaps object.
-  var baseMaps = {
-    "Satellite": satellite,
-    "Grayscale": grayscale,
-    "Outdoors": outdoors
-  };
+        // Console log the data retrieved 
+        console.log(plates);
+        L.geoJSON(plates, {
+            color: "orange",
+            weight: 2
+        }).addTo(tectonicPlates);
+    });
 
-  // Create an overlay object to hold our overlay.
-  var overlayMaps = {
-    "Earthquakes": earthquakes,
-    "Tectonic Plates": tectonicPlates
-  };
-  
-  // Create our map, giving it the satellite map and earthquakes layers to display on load.
+    // Create a baseMaps object.
+    var baseMaps = {
+        "Satellite": satellite,
+        "Grayscale": grayscale,
+        "Outdoors": outdoors
+    };
+
+    // Create an overlay object to hold our overlay.
+    var overlayMaps = {
+        "Earthquakes": earthquakes,
+        "Tectonic Plates": tectonicPlates
+    };
+    
+    // Create our map, giving it the satellite map and earthquakes layers to display on load.
   var myMap = L.map("map", {
-    center: [37.09, -95.71],
+    center: [
+      37.09, -95.71
+    ],
     zoom: 5,
     layers: [satellite, earthquakes, tectonicPlates]
   });
