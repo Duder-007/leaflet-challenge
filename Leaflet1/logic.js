@@ -1,7 +1,7 @@
 
 const api_key = "pk.eyJ1Ijoicm9zYXpodSIsImEiOiJja2ZvbTFvbzEyM2c1MnVwbTFjdmVycXk5In0.71jVP2vD8pBWO2bsKtI48Q";
 
-var queryUrl= "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+var queryUrl= "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
 
 
   
