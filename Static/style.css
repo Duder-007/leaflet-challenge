@@ -1,61 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Earthquake Map</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-  <style>
-    body {
-      padding: 1;
-      margin: 1;
-    }
+body {
+  padding: 1;
+  margin: 1;
+}
 
-    #map,
-    body,
-    html {
-      height: 100%;
-    }
+#map,
+body,
+html {
+  height: 100%;
+}
 
-    /* Set Legend Style */
-    .info {
-      padding: 1px 10px;
-      background: #fefeff;
-      border-radius: 5px;
-    }
+/* Set Legend Style */
+.info {
+  padding: 1px 10px;
+  background: #fefeff;
+  border-radius: 5px;
+}
 
-    .legend {
-      line-height: 25px;
-      color: #000000ab;
-    }
+.legend {
+  line-height: 25px;
+  color: #000000ab;
+}
 
-    .legend i {
-      width: 20px;
-      height: 20px;
-      float: right;
-      margin-right: 10px;
-      margin-left: 10px;
-      opacity: 0.75;
-    }
+.legend i {
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-right: 10px;
+  margin-left: 10px;
+  opacity: 0.75;
+}
 
-    h3 {
-      margin: 0px;
-      padding: 2px;
-      font-family: fantasy, cursive, emoji;
-    }
+h3 {
+  margin: 0px;
+  padding: 2px;
+  font-family: fantasy, cursive, emoji;
+}
 
-    p {
-      margin: -5px;
-      padding: -6px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-  <script src="app.js"></script>
-</body>
-</html>
+p {
+  margin: -5px;
+  padding: -6px;
+  font-family: Arial, Helvetica, sans-serif;
+}
