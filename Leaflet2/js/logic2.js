@@ -16,7 +16,7 @@ function chooseColor(depth){
   else if (depth < 30) return "violet";
   else if (depth < 50) return "indigo";
   else if (depth < 70) return "blue";
-  else if (depth < 90) return "red";
+  else if (depth < 90) return "indigo";
   else return "#FF0000";
 }
 
