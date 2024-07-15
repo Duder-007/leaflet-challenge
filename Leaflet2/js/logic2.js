@@ -82,7 +82,7 @@ function createMap(earthquakes) {
         // Console log the data retrieved 
         console.log(plates);
         L.geoJSON(plates, {
-            color: "orange",
+            color: "white",
             weight: 2
         }).addTo(tectonicPlates);
     });
